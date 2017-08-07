@@ -26,7 +26,7 @@ ScrollPrevent.init(document.querySelector("#show"))
 
 当然，想取消`ScrollPrevent`的效果也很容易。`ScrollPrevent.init(dom)`方法的会返回一个函数，调用它就可以取消。
 就像这样
-```
+```javascript
 var unPrevent = ScrollPrevent.init(document.querySelector("#show"));
 // 当你不想用时
 unPrevent();
