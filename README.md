@@ -16,13 +16,21 @@
 ```
 之后，在页面尾部为浮层元素添加
 ```javascript
-ScrollPrevent().init(dom)
+ScrollPrevent.init(dom)
 ```
 其中，dom为使用选择器选中的HTML原生DOM元素。比如
 ```javascript
-ScrollPrevent().init(document.querySelector("#show"))
+ScrollPrevent.init(document.querySelector("#show"))
 ```
 之后我们可以发现，在移动端，浮层的滚动和整个页面的滚动彻底无关了！
+
+当然，想取消`ScrollPrevent`的效果也很容易。`ScrollPrevent.init(dom)`方法的会返回一个函数，调用它就可以取消。
+就像这样
+```
+var unPrevent = ScrollPrevent.init(document.querySelector("#show"));
+// 当你不想用时
+unPrevent();
+```
 
 # 测试页面
 可以使用移动设备访问[测试页面](http://139.129.132.196/scrollprevent/)
