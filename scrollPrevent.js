@@ -23,6 +23,7 @@ var ScrollPrevent = (function() {
 
   var init = function(targetDOM) {
     if (!targetDOM && !isSBBrowser()) {
+      console.error(new Error('Your is not support'));
       return;
     }
     if (isMobile()) {
@@ -50,30 +51,21 @@ var ScrollPrevent = (function() {
 
   var initWeb = function(targetDOM) {
     var listenStart = false;
-    var parent = targetDOM.parentElement;
-    var shouldStop = false;
     targetDOM.addEventListener('mouseenter', function(e) {
       listenStart = true;
     });
     targetDOM.addEventListener('mouseleave', function(e) {
       listenStart = false;
-    })
-    window.addEventListener('scroll', function(e) {
-      var eventTarget = e.target;
-      shouldStop = eventTarget !== targetDOM;
-      console.log(e)
-      console.log(shouldStop)
-    }, true);
-    document.querySelector('.container').addEventListener('scroll', function(e) {
-    }, true);
-    // window.addEventListener('mousewheel', function(e) {
-    //   if(shouldStop) {
-    //     e.preventDefault();
-    //   }
-    // });
-    // document.querySelector('.container').addEventListener('scroll', function(e) {
-    //   console.log(e)
-    // });
+    });
+    window.addEventListener('wheel', function(e) {
+      if (listenStart) {
+        if (e.deltaY <= 0 && targetDOM.scrollTop == 0) {
+          e.preventDefault();
+        } else if (e.deltaY > 0 && targetDOM.scrollTop == getMaxScroll(targetDOM)) {
+          e.preventDefault();
+        }
+      }
+    });
   };
 
   return {

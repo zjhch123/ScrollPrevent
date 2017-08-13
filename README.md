@@ -8,6 +8,9 @@
 
 `ScrollPrevent.js`就是为了解决这种情况而被制作的！
 
+# 支持
+IE 8+ / 现代化手机浏览器
+
 # 使用方式
 将git仓库内的scrollPrevent.js保存到本地。
 在HTML的任何位置使用一句话引入
@@ -36,8 +39,11 @@ unPrevent();
 可以使用移动设备访问[测试页面](http://139.129.132.196/scrollprevent/)
 
 如果您正巧是用PC在访问本页面，可以拿起手机扫描下方的二维码，进行访问
-<br>
+<br/>
 ![二维码](https://image.hduzplus.xyz/image/1488113445465.png)
+<br/>
+!!新特性
+您可以直接访问PC页面，体验`ScrollPrevent`。[测试页面](http://139.129.132.196/scrollprevent/)
 
 
 感谢使用。
