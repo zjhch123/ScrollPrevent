@@ -25,7 +25,7 @@ ScrollPrevent.init(dom)
 ```javascript
 ScrollPrevent.init(document.querySelector("#show"))
 ```
-之后我们可以发现，在移动端，浮层的滚动和整个页面的滚动彻底无关了！
+之后我们可以发现，浮层的滚动和整个页面的滚动彻底无关了！
 
 当然，想取消`ScrollPrevent`的效果也很容易。`ScrollPrevent.init(dom)`方法的会返回一个函数，调用它就可以取消。
 就像这样
