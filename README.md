@@ -9,7 +9,7 @@
 `ScrollPrevent.js`就是为了解决这种情况而被制作的！
 
 # 支持
-IE 8+ / 现代化手机浏览器
+IE 9+ / 现代化手机浏览器
 
 # 使用方式
 将git仓库内的scrollPrevent.js保存到本地。

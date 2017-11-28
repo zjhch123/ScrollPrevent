@@ -5,25 +5,32 @@ var ScrollPrevent = (function() {
       return check;
   };
 
-  var isSBBrowser = function() {
-    // ...
-    return false;
+  var isUnsupportBrowser = function() {
+    return !!Event.prototype.preventDefault && !!Event.prototype.stopPropagation && !!Element.prototype.addEventListener;
   };
 
   var getMaxScroll = function(targetDOM) {
     return targetDOM.scrollHeight - targetDOM.clientHeight;
   };
 
-  var removeListener = function(targetDOM, touchStart, touchMove) {
-    return function() {
-      targetDOM.removeEventListener('touchstart', touchStart);
-      targetDOM.removeEventListener('touchmove', touchMove);
-    };
+  var removeListener = function(type, targetDOM, touchStart, touchMove, wheel) {
+    if (type == 0) {
+      return function() {
+        targetDOM.removeEventListener('touchstart', touchStart);
+        targetDOM.removeEventListener('touchmove', touchMove);
+      };
+    } else {
+      return function() {
+        targetDOM.removeEventListener('mouseenter', touchStart);
+        targetDOM.removeEventListener('mouseleave', touchMove);
+        window.removeEventListener('wheel', wheel);
+      }
+    }
   };
 
   var init = function(targetDOM) {
-    if (!targetDOM && !isSBBrowser()) {
-      console.error(new Error('Your is not support'));
+    if (!targetDOM && !isUnsupportBrowser()) {
+      console.error(new Error('Your browser is not support'));
       return;
     }
     if (isMobile()) {
@@ -40,24 +47,25 @@ var ScrollPrevent = (function() {
     };
     var touchMove = function(e) {
       var eventY = e.touches[0].pageY;
-      if((eventY - nowY > 0 && this.scrollTop == 0) || (eventY - nowY < 0 && this.scrollTop == getMaxScroll(targetDOM)))
+      if((eventY - nowY > 0 && this.scrollTop == 0) || (eventY - nowY < 0 && this.scrollTop == getMaxScroll(targetDOM))) {
         e.preventDefault();
-      nowY = eventY
+      }
+      nowY = eventY;
     };
     targetDOM.addEventListener("touchstart", touchStart);
     targetDOM.addEventListener("touchmove", touchMove);
-    return removeListener(targetDOM, touchStart, touchMove);
+    return removeListener(0, targetDOM, touchStart, touchMove);
   };
 
   var initWeb = function(targetDOM) {
     var listenStart = false;
-    targetDOM.addEventListener('mouseenter', function(e) {
+    var mouseenter = function() {
       listenStart = true;
-    });
-    targetDOM.addEventListener('mouseleave', function(e) {
+    };
+    var mouseleave = function() {
       listenStart = false;
-    });
-    window.addEventListener('wheel', function(e) {
+    };
+    var wheel = function(e) {
       if (listenStart) {
         if (e.deltaY <= 0 && targetDOM.scrollTop == 0) {
           e.preventDefault();
@@ -65,7 +73,11 @@ var ScrollPrevent = (function() {
           e.preventDefault();
         }
       }
-    });
+    };
+    targetDOM.addEventListener('mouseenter', mouseenter);
+    targetDOM.addEventListener('mouseleave', mouseleave);
+    window.addEventListener('wheel', wheel);
+    return removeListener(1, targetDOM, mouseenter, mouseleave, wheel);
   };
 
   return {
