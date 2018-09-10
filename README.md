@@ -12,6 +12,20 @@
 IE 9+ / 现代化手机浏览器
 
 # 使用方式
+## 打包工具
+安装
+```
+npm i scrollprevent --save
+```
+
+引入
+```
+import ScrollPrevent from 'scrollprevent
+```
+
+使用方式可以参考浏览器~
+
+## 浏览器
 将dist/index.js保存到本地。
 在HTML的任何位置使用一句话引入
 ```html
@@ -34,6 +48,7 @@ const unPrevent = window.ScrollPrevent.init(document.querySelector("#show"));
 // 当你不想用时
 unPrevent();
 ```
+
 
 # 测试页面
 可以使用移动设备访问[测试页面](http://139.129.132.196/scrollprevent/)
