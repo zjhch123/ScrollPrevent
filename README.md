@@ -20,7 +20,7 @@ npm i scrollprevent --save
 
 引入
 ```
-import ScrollPrevent from 'scrollprevent
+import ScrollPrevent from 'scrollprevent';
 ```
 
 使用方式可以参考浏览器~
