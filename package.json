@@ -1,5 +1,5 @@
 {
-  "name": "ScrollPrevent",
+  "name": "scrollprevent",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,8 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "zjhch123 <416836508@qq.com>",
+  "repository": {
+    "github": "https://github.com/zjhch123/ScrollPrevent"
+  },
+  "license": "ZJH",
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
