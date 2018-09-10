@@ -1,0 +1,11 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": "> 1%, ios 10, android 4.4"
+      }
+    ]
+  ]
+}

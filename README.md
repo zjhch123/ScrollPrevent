@@ -12,25 +12,25 @@
 IE 9+ / 现代化手机浏览器
 
 # 使用方式
-将git仓库内的scrollPrevent.js保存到本地。
+将dist/index.js保存到本地。
 在HTML的任何位置使用一句话引入
 ```html
-<script src="scrollPrevent.js"></script>
+<script src="index.js"></script>
 ```
 之后，在页面尾部为浮层元素添加
 ```javascript
-ScrollPrevent.init(dom)
+window.ScrollPrevent.init(dom)
 ```
 其中，dom为使用选择器选中的HTML原生DOM元素。比如
 ```javascript
-ScrollPrevent.init(document.querySelector("#show"))
+window.ScrollPrevent.init(document.querySelector("#show"))
 ```
 之后我们可以发现，浮层的滚动和整个页面的滚动彻底无关了！
 
 当然，想取消`ScrollPrevent`的效果也很容易。`ScrollPrevent.init(dom)`方法的会返回一个函数，调用它就可以取消。
 就像这样
 ```javascript
-var unPrevent = ScrollPrevent.init(document.querySelector("#show"));
+const unPrevent = window.ScrollPrevent.init(document.querySelector("#show"));
 // 当你不想用时
 unPrevent();
 ```
